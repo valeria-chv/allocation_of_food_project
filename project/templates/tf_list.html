@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Распределение раскладки</h1>
+
+ {% for pair_1 in object_list|slice:count %}
+ 	{% with tour_name=pair_1.tour.name %}
+ 	<b><p><a href="{% url 'tf_detail' pair_1.tour.id %}">{{pair_1.tour.name}}</a></p></b>
+ 	<ul>
+ 		{% for pair_2 in object_list %}
+ 			{% if pair_2.tour.name == tour_name %}
+ 				<li><p>{{pair_2.food.name}}, {{pair_2.food.weight}} гр</p></li>
+ 			{% endif %}
+ 		{% endfor %}
+ 	</ul>
+ 	{% endwith %}
+ {% endfor %}
+ 
+ {% endblock content %}

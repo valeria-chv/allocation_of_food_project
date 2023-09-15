@@ -40,7 +40,8 @@ def create_tables(cursor):
 
 		CREATE TABLE IF NOT EXISTS tf (
 			tour_id int,
-			food_id int
+			food_id int,
+			id int
 		)
 	""")
 
@@ -91,6 +92,6 @@ def create_db(cursor, path_food, path_tourists):
 	if count_in_food[0][0] == count_in_tour[0][0] == 0:
 		#print(1)
 		add_constraints(cursor)
-		copy_data_to_db(cursor, path_food, path_tourists)
+		#copy_data_to_db(cursor, path_food, path_tourists)
 
 

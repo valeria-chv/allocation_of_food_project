@@ -1,0 +1,19 @@
+{% load static %}
+<html>
+	<head>
+		<title>Tourism</title>
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
+		<link rel="stylesheet" href="{% static 'css/base.css' %}">
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<div class="nav-left">
+					<h1><a href="/">Home</a> | <a href="/tourists/">Туристы</a> | <a href="/food/">Еда в поход</a> | <a href="/tf/">Распределение раскладки</a></h1>
+				</div>
+			</header>
+			{% block content %}
+			{% endblock content %}
+		</div>
+	</body>
+</html>

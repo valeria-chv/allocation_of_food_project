@@ -12,36 +12,36 @@
  """
 
 from moduls.database_logic import *
-	
-dbname, user, host, port = "tourism", "postgres", "127.0.0.1", "5432"
-password = input("Password: ")
-path_food = 'in_out_files/food.csv'
-path_tourists = 'in_out_files/tourists.csv'
-key = 'add_tables_and_writes' # 'create_and_add_writes'
-	
-connection = create_connection(
-    "postgres", user, password, host, port
-)
-connection.autocommit = True
-cursor = connection.cursor()
 
-if key == 'create_and_add_writes':
+def create_database(dbname, user, password, host, port):
+	
+	path_food = 'in_out_files/food.csv'
+	path_tourists = 'in_out_files/tourists.csv'
+	key = 'add_tables_and_writes' # 'create_and_add_writes'
+		
+	connection = create_connection(
+	    "postgres", user, password, host, port
+	)
+	connection.autocommit = True
+	cursor = connection.cursor()
+
+	if key == 'create_and_add_writes':
+		try:
+			cursor.execute("CREATE DATABASE tourism")
+		finally:
+			cursor.close()
+			connection.close()
+
+
+	connection = create_connection(
+		dbname, user, password, host, port
+	)
+	connection.autocommit = True
+	cursor = connection.cursor()
 	try:
-		cursor.execute("CREATE DATABASE tourism")
+		create_db(cursor, path_food, path_tourists)
 	finally:
 		cursor.close()
 		connection.close()
-
-
-connection = create_connection(
-	dbname, user, password, host, port
-)
-connection.autocommit = True
-cursor = connection.cursor()
-try:
-	create_db(cursor, path_food, path_tourists)
-finally:
-	cursor.close()
-	connection.close()
 
 

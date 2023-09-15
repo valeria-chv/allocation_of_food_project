@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Еда в поход</h1>
+
+{% for foo in object_list %}
+	<ul><li><p>{{ foo.name }}, {{ foo.weight }} гр</p></li></ul>
+{% endfor %}
+
+{% endblock content %}

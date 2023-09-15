@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Туристы</h1>
+
+{% for tourist in object_list %}
+	<ul><li><b><a href="{% url 'tf_detail' tourist.id %}">{{ tourist.name }}</a>, {{ tourist.food_weight }} гр</b></li></ul>
+{% endfor %}
+
+{% endblock content %}

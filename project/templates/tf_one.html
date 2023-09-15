@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{object}}</h1>
+
+<ul>
+{% for pair in tf %}
+ 	{% if pair.tour.name == object.name %}
+ 		<li><p>{{pair.food.name}}, {{pair.food.weight}} гр</p></li>
+ 	{% endif %}
+{% endfor %}
+</ul>
+
+{% endblock content %}

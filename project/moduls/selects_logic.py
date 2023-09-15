@@ -33,7 +33,7 @@ def add_column_used_in_food(cursor):
 	cursor.execute("ALTER TABLE food ADD COLUMN used int")
 
 
-def give_prod_to_tour(cursor, importance, tour):
+def give_prod_to_tour(cursor, importance, tour, count):
 	""" Дает туристу продукт. Т.е. находит в бд подходящий продукт для туриста,
 	 добавляет в таблицу tf id туриста и продукта, изменяет оставшийся вес продуктов для туриста,
 	 корректирует для продукта столбец used (used = 1)"""
@@ -49,7 +49,7 @@ def give_prod_to_tour(cursor, importance, tour):
 	product = Product(*cursor.fetchall()[0])
 	#print(product)
 	
-	cursor.execute(f"INSERT INTO tf VALUES ({tour.id}, {product.id})")
+	cursor.execute(f"INSERT INTO tf VALUES ({tour.id}, {product.id}, {count})")
 	
 	tour.food_weight -= product.weight
 	cursor.execute(f"UPDATE food SET used = 1 WHERE id = {product.id}")
@@ -74,6 +74,6 @@ def write_to_xls_result(cursor):
 
 	outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
 
-	with open('in_out_files/resultsfile.xls', 'w') as f:
+	with open('in_files/resultsfile.xls', 'w') as f:
 		cursor.copy_expert(outputquery, f)
 
